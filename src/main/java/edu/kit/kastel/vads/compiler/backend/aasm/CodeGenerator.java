@@ -16,10 +16,10 @@ public class CodeGenerator {
     public String generateCode(List<IrGraph> program) {
         StringBuilder builder = new StringBuilder();
 
-        builder.append(".global main\n")
+        builder.append(".global _start\n")
                .append(".global _main\n")
                .append(".text\n")
-               .append("main:\n")
+               .append("_start:\n")
                .append("  call _main\n")
                .append("  mov %eax, %edi\n")
                .append("  mov $60, %rax\n")
@@ -30,10 +30,6 @@ public class CodeGenerator {
             AasmRegisterAllocator allocator = new AasmRegisterAllocator();
             Map<Node, Register> registers = allocator.allocateRegisters(graph);
 
-            System.out.println("Register mapping for function: " + graph.name());
-            registers.forEach((n, r) ->
-                System.out.println("  " + n.getClass().getSimpleName() + " -> " + r)
-            );
 
             generateForGraph(graph, builder, registers);
         }

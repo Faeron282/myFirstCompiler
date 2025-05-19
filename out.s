@@ -8,9 +8,9 @@ _start:
   syscall
 
 _main:
-  movl $1, %eax
-  movl $2, %ebx
-  movl $3, %ecx
+  movl $7, %eax
+  movl $5, %ebx
+  movl $6, %ecx
   movl %ebx, %edx
   imull %ecx, %edx
   movl %eax, %esi
