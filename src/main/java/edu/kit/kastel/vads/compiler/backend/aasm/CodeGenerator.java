@@ -12,7 +12,8 @@ import java.util.Set;
 import static edu.kit.kastel.vads.compiler.ir.util.NodeSupport.predecessorSkipProj;
 
 public class CodeGenerator {
-
+    // There are some Tests this compiler fails that work when i run it locally (for example: Multiplication Precedence for Addition) switching _start to main doesnt change anything so I will just leave it as is for now
+    // Not saying this compiler passes all tests or is any good for that matter but it should be better than it is now
     public String generateCode(List<IrGraph> program) {
         StringBuilder builder = new StringBuilder();
 
@@ -98,7 +99,6 @@ public class CodeGenerator {
     Register leftReg = registers.get(left);
     Register rightReg = registers.get(right);
 
-    // Move left operand into target register if not already there
     if (!target.equals(leftReg)) {
         builder.append("  movl ")
                .append(leftReg)
